@@ -1,10 +1,9 @@
 #Build Stage
-FROM atlassian/maven:latest as build
-WORKDIR /app
-COPY pom.xml /app/pom.xml
-RUN mvn clean package -X
+FROM ringcentral/maven:3.8.2-jdk17 as build
+COPY . .
+RUN mvn clean package
 #Package
-FROM eclipse-temurin
+FROM eclipse-temurin:17-jdk-alpine
 COPY --from=build target/MyAssist-0.0.1-SNAPSHOT.jar /opt/MyAssist.jar
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","/opt/MyAssist.jar"]
