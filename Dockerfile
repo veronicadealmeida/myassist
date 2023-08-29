@@ -1,5 +1,5 @@
 #Build Stage
-FROM maven:latest as build
+FROM atlassian/maven:latest as build
 COPY . .
 RUN mvn clean package -X
 #Package
