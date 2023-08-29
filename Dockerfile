@@ -1,6 +1,7 @@
 #Build Stage
 FROM atlassian/maven:latest as build
-COPY . .
+WORKDIR /app
+COPY pom.xml /app/pom.xml
 RUN mvn clean package -X
 #Package
 FROM eclipse-temurin
