@@ -1,5 +1,5 @@
 #Build Stage
-FROM ringcentral/maven:latest as build
+FROM maven:latest as build
 COPY . .
 RUN mvn clean package -X
 #Package
